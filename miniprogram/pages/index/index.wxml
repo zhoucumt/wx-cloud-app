@@ -1,0 +1,4 @@
+<!--index.wxml-->
+<view class="container">
+  <button bindtap="btnGetWerun" type="primary">获取微信步数</button>
+</view>
