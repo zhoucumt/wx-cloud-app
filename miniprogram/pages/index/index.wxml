@@ -1,4 +1,8 @@
 <!--index.wxml-->
 <view class="container">
-  <button bindtap="btnGetWerun" type="primary">获取微信步数</button>
+  <!-- <button bindtap="btnGetWerun" type="primary">获取微信步数</button> -->
+  <button bindtap="btnScanCode" type="primary">扫码识书</button>
+  <image src="{{imageurl}}" mode="widthFix"></image>
+  <view>书籍名称： {{title}}</view>
 </view>
+

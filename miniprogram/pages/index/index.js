@@ -1,9 +1,14 @@
 //index.js
 const app = getApp()
+const db = wx.cloud.database(); 
 
 Page({
   data: {
+    title: '',
+    imageurl: ''
   },
+
+  // 获取微信步数
   btnGetWerun(e) {
     wx.getWeRunData({
       success: (result) => {
@@ -21,6 +26,32 @@ Page({
           }
         });
       },
+    });
+  },
+
+  // 扫码识书
+  btnScanCode(e) {
+    console.log('点击扫码');
+    wx.scanCode({
+      onlyFromCamera: true,
+      success: (res) => {
+        console.log('res: ', res);
+        var isbn = res.result;
+        console.log(res);
+        wx.cloud.callFunction({
+          name: "getbook",
+          data: {
+            isbn: res.result
+          },
+          success: (result) => {
+            console.log('result---: ', result);
+            this.setData({
+              imageurl: result.result.cover_url,
+              title: result.result.title
+            });
+          }
+        });
+      }
     });
   },
 
